@@ -19,3 +19,13 @@ class Employee(db.Model):
 
     def __repr__(self):
         return f'<Employee {self.id}, {self.name}, {self.salary}>'
+    
+    class Department(db.Model):
+       __tablename__ = 'department'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), nullable=False)
+
+    # Relationships
+    employees = db.relationship('Employee', backref='department', lazy=True)
+
